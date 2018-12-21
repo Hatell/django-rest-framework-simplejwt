@@ -31,6 +31,7 @@ class TokenObtainSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         self.user = authenticate(**{
+            'request': self.context.get('request'),
             self.username_field: attrs[self.username_field],
             'password': attrs['password'],
         })
